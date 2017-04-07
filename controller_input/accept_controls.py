@@ -11,23 +11,41 @@ device
 def select_controller_inputs():
 
     starting_index_value = 1
-    i = 0
-    #List all available devices detected for input
-    print("#################################")
-    print("## Available devices for input ##")
-    print("#################################\n")
 
-    for device in devices:
-        print(str(starting_index_value + i) + ": " + str(device))
-        #Advance selection index
-        i += 1
+    #Select device. Make sure is valid selection.
+    valid_selection = False
+    while valid_selection == False:
 
+        #List all available devices detected for input
+        print("\n#################################")
+        print("## Available devices for input ##")
+        print("#################################\n")
+
+        i = 0
+        for device in devices:
+            print(str(starting_index_value + i) + ": " + str(device))
+            #Advance selection index
+            i += 1
     # Select device from number list
-    Selection = input("\n Which device do you want to use?: ")
+        try:
+            Selection = input("\n Which device do you want to use?: ")
+
+            #cast selection to integer
+            Selection = int(Selection)
+
+            if (Selection >= starting_index_value) and (Selection < starting_index_value + i):
+                valid_selection = True
+            else:
+                print("Invalid selection. Select a device from the list.")
+
+        except (ValueError, TypeError):
+            print("Not an integer")
+
+    #End while loop
 
     # Arrays start at 0, so need to subtract starting index to get
     # correct device that was selected.
-    Selection = int(Selection) - starting_index_value
+    Selection = Selection - starting_index_value
 
     print(str(devices[Selection]) + " has been selected")
 
