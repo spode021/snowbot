@@ -1,4 +1,4 @@
-from inputs import devices
+from inputs import *
 
 '''
 Function: select_controller_inputs
@@ -6,9 +6,9 @@ Function: select_controller_inputs
 @Return: Device to be used for input
 Description: Lists all devices that are detected on system. Allows user to
 select which device they will be using to send input. Returns the selected
-device
+device with a class type of Gamepad, Keyboard, or Mouse.
 '''
-def select_controller_inputs():
+def select_inputs():
 
     starting_index_value = 1
 
@@ -50,8 +50,27 @@ def select_controller_inputs():
     print(str(devices[Selection]) + " has been selected")
 
     return devices[Selection]
+
+#End select_inputs
+
+
+'''
+Function: get_events
+@param: device being used for input
+@return: None
+Description: accept input from device.
+'''
+def get_events(device):
+    while True:
+        events = device.read()
+        for event in events:
+            print(event.ev_type, event.code, event.state)
+
+
 # Main function.
 if __name__ == "__main__":
-    device = select_controller_inputs()
+    device = select_inputs()
 
     print("Now using " + str(device))
+
+    get_events(device)
