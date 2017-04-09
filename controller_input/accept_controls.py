@@ -58,12 +58,18 @@ def select_inputs():
 Function: get_events
 @param: device being used for input
 @return: None
-Description: accept input from device.
+Description: Get events from device. Currently assumed for input device to be
+a gamepad. Need to look for a good way to discern if input device is a gamepad
+or keyboard or any other input device to use. Gamepad input for joysticks is
+a little complex. May want to evaluate gamepad input to be
+simpler to understand.
 '''
 def get_events(device):
     while True:
+        # read event from device
         events = device.read()
         for event in events:
+            # print the event. Used for debugging and developing input use
             print(event.ev_type, event.code, event.state)
 
 
