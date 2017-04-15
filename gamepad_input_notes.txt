@@ -1,0 +1,82 @@
+Key BTN_NORTH 1 = X button pressed
+Key BTN_NORTH 0 = X button released (not pressed down)
+
+Key BTN_WEST 1 = Y button pressed
+Key BTN_WEST 0 = Y button released (not pressed down)
+
+Key BTN_EAST 1 = B button pressed
+Key BTN_EAST 0 = B button released (not pressed down)
+
+Key BTN_SOUTH 1 = A button pressed
+Key BTN_SOUTH 0 = A button released (not pressed down)
+
+###########################################
+Notes for accepting input from XBox gamepad
+###########################################
+
+
+Absolute ABS_X -32768 = Left stick pushed left
+
+Absolute ABS_Y -32768 = Left stick pushed forward
+
+Absolute ABS_X 32767 = Left stick pushed right
+
+Absolute ABS_Y 32767 = Left stick pushed downward
+
+Absolute ABS_RX -30513 = Right stick pushed left
+
+Absolute ABS_RY -32768 = Right stick pushed forward
+
+Absolute ABS_RX 32767 = Right stick pushed right
+
+Absolute ABS_RY 32767 = Right stick pushed downward
+
+Key BTN_THUMBL 1 = Left stick pressed
+
+Key BTN_THUMBL 0 = Left stick released (not pressed)
+
+Key BTN_THUMBR 1 = Right stick pressed
+
+Key BTN_THUMBR 0 = Right stick released (not pressed)
+
+Key BTN_SELECT 1 = select button pressed
+Key BTN_SELECT 0 = select button not pressed
+
+Key BTN_START 1 = start button pressed
+Key BTN_START 0 = start button not pressed
+
+Key BTN_TL 1 = LB button pressed
+Key BTN_TL 0 = LB button not pressed
+
+Key BTN_TR 1 = RB button pressed
+Key BTN_TR 0 = RB button not pressed
+
+
+Absolute ABS_Z 255 = Left trigger pulled (0 when not pulled)
+
+Absolute ABS_RZ 255 = Right trigger pulled (0 when not pulled)
+
+
+Absolute ABS_HAT0X -1 = Dpad pressed left
+
+Absolute ABS_HAT0Y -1 = Dpad pressed up
+
+Absolute ABS_HAT0X 1 = Dpad pressed right
+
+Absolute ABS_HAT0Y 1 = Dpad pressed down
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

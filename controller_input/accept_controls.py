@@ -65,12 +65,26 @@ a little complex. May want to evaluate gamepad input to be
 simpler to understand.
 '''
 def get_events(device):
+    text_file = open("output.txt", "w")
     while True:
         # read event from device
         events = device.read()
         for event in events:
             # print the event. Used for debugging and developing input use
-            print(event.ev_type, event.code, event.state)
+            if event.ev_type != 'Sync':
+                if event.ev_type == 'Absolute':
+                    # Joysticks, triggers, and D Pad input
+                    if (((event.state > 5000) or (event.state < -5000))
+                    # Triggers and D pad use ev_type Absolute but are smaller
+                    # values.
+                    or (event.code != 'ABS_X' and event.code != 'ABS_Y'
+                    and event.code != 'ABS_RX' and event.code != 'ABS_RY')):
+
+                        print(event.ev_type, event.code, event.state)
+                #Button input
+                elif event.ev_type != 'Absolute':
+                    print(event.ev_type, event.code, event.state)
+
 
 
 # Main function.
