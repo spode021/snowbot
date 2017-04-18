@@ -1,5 +1,5 @@
 from inputs import *
-
+from common import settings
 '''
 Function: select_controller_inputs
 @param: None
@@ -65,6 +65,10 @@ a little complex. May want to evaluate gamepad input to be
 simpler to understand.
 '''
 def get_events(device):
+    # limit for valid input. Rules out false input being sent when joysticks
+    # aren't being used.
+    input_limit = 2000
+
     text_file = open("output.txt", "w")
     while True:
         # read event from device
@@ -74,19 +78,37 @@ def get_events(device):
             if event.ev_type != 'Sync':
                 if event.ev_type == 'Absolute':
                     # Joysticks, triggers, and D Pad input
-                    if (((event.state > 5000) or (event.state < -5000))
+                    # Joysticks can sometimes read activity around 1000 when
+                    # doing nothing, so have a limit to exclude these events
+                    if (((event.state > input_limit) or (event.state < -input_limit))
                     # Triggers and D pad use ev_type Absolute but are smaller
                     # values.
                     or (event.code != 'ABS_X' and event.code != 'ABS_Y'
                     and event.code != 'ABS_RX' and event.code != 'ABS_RY')):
-
+                        # debug print. Will likely change or not be used unless
+                        # debugging.
                         print(event.ev_type, event.code, event.state)
+                        interpret_event(event)
                 #Button input
                 elif event.ev_type != 'Absolute':
                     print(event.ev_type, event.code, event.state)
+                    interpret_event(event)
 
+#END get_events
+'''
+Function: interpret_event
+@param: event from device
+@return: None
+Description: Interprets an event from an input device to something more
+understandable.
+for
+'''
+def interpret_event(event):
+    pass
 
+    #Absolute events
 
+    #button events
 # Main function.
 if __name__ == "__main__":
     device = select_inputs()
