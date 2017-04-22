@@ -1,5 +1,4 @@
 from inputs import *
-from common import settings
 '''
 Function: select_controller_inputs
 @param: None
